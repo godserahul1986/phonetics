@@ -1,0 +1,20 @@
+.container {
+	width: 400px;
+	margin: 100px auto;
+}
+
+.full-name {
+	width: 320px;
+	height: 30px;
+	margin: 10px;
+	padding: 2px;
+	font-size: 20px;
+}
+
+.btn-spell-name {
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+	background-image: url('../assets/images/speak.png');
+}
