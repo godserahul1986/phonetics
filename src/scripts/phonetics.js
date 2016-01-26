@@ -3,11 +3,9 @@ import PHONETICS_CONSTANTS from '../util/phonetics_constants.js';
 class Phonetics {
 	constructor() {
 		this.utterance = new SpeechSynthesisUtterance();
-		this.utterance.lang = 'en-US';
 		this.utterance.rate = 0.7;
-		this.utterance.voice = speechSynthesis.getVoices().filter(function(voice) {
-			return voice.name === 'Google US English'; 
-		})[0];
+		this.utterance.voice = speechSynthesis.getVoices()
+			.filter((voice) => voice.name === 'Google US English')[0];
 	}
 
 	spellName(name) {
@@ -25,7 +23,9 @@ function getPhoneticsForName(name) {
 	name = name.toUpperCase();
 	chars = name.split('');
 	chars = chars.map((char) => {
-		if (char === '@') {
+		if (char === ' ') {
+			return '';
+		} else if (char === '@') {
 			return 'At the rate';
 		} else if (Number.isInteger(parseInt(char))) {
 			return PHONETICS_CONSTANTS[char];

@@ -27,5 +27,6 @@ export default {
                 loader: `file?${ fileLoaderParams }&mimetype=image/png`,
             }
 		]
-	}
+	},
+    devtool: '#eval-source-map'
 };
