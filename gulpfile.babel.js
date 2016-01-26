@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import connect from 'gulp-connect';
+import del from 'del';
 
 import webPack from 'webpack';
 import webPackDevServer from 'webpack-dev-server';
@@ -35,10 +36,11 @@ gulp.task('dev', () => {
     });
 });
 
-gulp.task('copy', () => {
-    return gulp.src('./index.html')
-        .pipe(gulp.dest('./build'));
-});
+gulp.task('copy', () => gulp.src('./index.html')
+        .pipe(gulp.dest('./build'))
+);
+
+gulp.task('clean', () => del('./build', { force: true }));
 
 gulp.task('build', ['copy'], (done) => {
     const buildConfig = Object.create(webpackConfig);
@@ -52,7 +54,7 @@ gulp.task('build', ['copy'], (done) => {
     });
 });
 
-gulp.task('default', ['build'], () => {
+gulp.task('default', ['clean', 'build'], () => {
     connect.server({
         root: 'build',
         port: portNumber
